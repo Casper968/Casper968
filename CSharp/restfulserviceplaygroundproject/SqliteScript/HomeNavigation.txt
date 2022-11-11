@@ -1,0 +1,19 @@
+create table HomeNavigation(
+    ID int primary key not null,
+    Text nvarchar(100) not null
+)
+
+insert into HomeNavigation (ID, Text)
+values (1, '所有車型');
+
+insert into HomeNavigation (ID, Text)
+values (2, '購車及優惠');
+
+insert into HomeNavigation (ID, Text)
+values (3, 'BMW電動未來');
+
+insert into HomeNavigation (ID, Text)
+values (4, '車主服務');
+
+insert into HomeNavigation (ID, Text)
+values (5, '探索BMW');

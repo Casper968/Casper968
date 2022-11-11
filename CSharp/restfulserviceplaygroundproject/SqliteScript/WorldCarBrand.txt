@@ -1,0 +1,7 @@
+drop table if exists WorldCarBrand;
+
+create table if not exists WorldCarBrand(
+    ID integer primary key autoincrement,
+    Name nvarchar(100) not null,
+    Url nvarchar(500) not null
+);

@@ -4,8 +4,11 @@ create table if not exists WorldCarModel(
     ID integer primary key autoincrement,
     BrandId integer not null,
     Name nvarchar(100) not null,
-    Versions integer,
-    Models integer,
+    ListingYear integer,
+    Generation integer,
+    Version integer,
+    Model integer,
     ImageUrl nvarchar(500),
+    Url nvarchar(100),
     foreign key(BrandId) references WorldCarBrand(ID)
 );

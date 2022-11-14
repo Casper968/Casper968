@@ -32,5 +32,17 @@ namespace restfulserviceplaygroundproject.Controllers
         {
             return Result.Ok(this._carDbContext.GetCarModels(brandName, name));
         }
+
+        [HttpGet("Series")]
+        public async Task<Result> GetCarSeries(string? brandName, string? series)
+        {
+            return Result.Ok(this._carDbContext.GetCarSeries(brandName, series));
+        }
+
+        [HttpGet("Version")]
+        public async Task<Result> GetCarVersionList(string? brandName, string? series)
+        {
+            return Result.Ok(this._carDbContext.GetCarVersion(brandName, series));
+        }
     }
 }

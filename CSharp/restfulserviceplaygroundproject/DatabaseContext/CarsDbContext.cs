@@ -76,5 +76,69 @@ namespace restfulserviceplaygroundproject.DatabaseContext
 
             return modelList;
         }
+    
+        public async Task<List<CarSeries>> GetCarSeries(string? brandName, string? series)
+        {
+            var seriesList = this.WorldCarSeries.ToList();
+            if (seriesList?.Count > 0)
+            {
+                int brandId = 0;
+                var targetBrand = this.WorldCarBrand.FirstOrDefault(x => x.Name == brandName);
+                if (targetBrand != null)
+                {
+                    brandId = targetBrand.ID;
+                }
+
+                var modelList = this.WorldCarModel.ToList();
+                if (brandId > 0)
+                {
+                    modelList = modelList.Where(x => x.BrandId == brandId).ToList();
+                }
+
+                if (brandId > 0)
+                {
+                    seriesList = seriesList.Where(x => modelList.Any(y => y.ID.Equals(x.ModelId))).ToList();
+                }
+                
+                if (name != null)
+                {
+                    seriesList = seriesList.Where(x => x.Name.IndexOf(name) > -1).ToList();
+                }
+            }
+
+            return seriesList;
+        }
+        
+        public async Task<List<CarVersion>> GetCarVersion(string? brandName, string? series)
+        {
+            var versionList = await this.WorldCarVersion.ToListAsync();
+
+            if (versionList != null && versionList.Count > 0)
+            {
+                int brandId = 0;
+                var targetBrand = this.WorldCarBrand.FirstOrDefault(x => x.Name == brandName);
+                if (targetBrand != null)
+                {
+                    brandId = targetBrand.ID;
+                }
+
+                if (brandId > 0)
+                {
+                    List<CarSeries> seriesList = await this.GetCarSeries(brandName, series);
+
+                    if (seriesList?.Count > 0)
+                    {
+                        versionList = versionList.Where(x => seriesList.Any(y => y.ID.Equals(x.SeriesId))).ToList();
+                    }
+                }
+                
+                if (name != null)
+                {
+                    versionList = versionList.Where(x => x.Name.IndexOf(series) > -1).ToList();
+                }
+            }
+
+            return versionList;
+        }
     }
 }

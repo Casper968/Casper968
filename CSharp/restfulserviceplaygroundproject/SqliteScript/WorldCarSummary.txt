@@ -1,0 +1,14 @@
+drop table if exists WorldCarSummary;
+
+create table if not exists WorldCarSummary(
+    ID integer primary key autoincrement,
+    SeriesId integer not null,
+    Name nvarchar(100) not null,
+    ListingYear integer,
+    MaxPower integer,
+    MaxOutput integer,
+    EngineSize integer,
+    EngineCapacity decimal(10,2),
+    Url nvarchar(200),
+    foreign key(SeriesId) references WorldCarSeries(ID)
+);

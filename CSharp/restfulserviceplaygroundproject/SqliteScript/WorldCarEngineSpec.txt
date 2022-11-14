@@ -1,0 +1,10 @@
+drop table if exists WorldCarEngineSpec;
+
+create table if not exists WorldCarEngineSpec(
+    ID integer primary key autoincrement,
+    VersionId integer,
+    SpecName nvarchar(300),
+    SpecValue nvarchar(100),
+    foreign key(VersionId) references WorldCarVersion(ID)
+);
+select * from WorldCarEngineSpec;

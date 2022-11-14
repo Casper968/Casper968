@@ -1,0 +1,21 @@
+drop table if exists WorldCarVersion;
+
+create table if not exists WorldCarVersion(
+    ID integer primary key autoincrement,
+    SeriesId integer not null,
+    Name nvarchar(200) not null,
+    ListingYear integer,
+    MaximumPower integer,
+    HorsePower integer,
+    EngineSize integer,
+    EngineCapacity decimal(10,2),
+    Url nvarchar(200),
+    foreign key(SeriesId) references WorldCarSeries(ID)
+);
+
+insert into WorldCarVersion
+(SeriesId, Name, ListingYear, MaximumPower, HorsePower, ENgineSize, EngineCapacity)
+values
+(1,      "328", 1937,        80,           59,         1971,       120.3);
+
+select * from WorldCarVersion;

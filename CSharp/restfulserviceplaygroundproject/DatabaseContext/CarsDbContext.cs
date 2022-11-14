@@ -25,6 +25,18 @@ namespace restfulserviceplaygroundproject.DatabaseContext
 
         public DbSet<CarModel>? WorldCarModel { get; set; }
 
+        public DbSet<CarSeries>? WorldCarSeries { get; set; }
+
+        public DbSet<CarVersion>? WorldCarVersion { get; set; }
+
+        public DbSet<CarEngineSpec>? WorldCarEngineSpec { get; set; }
+
+        public DbSet<CarFuelSpec>? WorldCarFuelSpec { get; set; }
+
+        public DbSet<CarPrefSpec>? WorldCarPrefSpec { get; set; }
+
+        public DbSet<CarSizeSpec>? WorldCarSizeSpec { get; set; }
+
         public async Task<List<CarBrand>> GetCarBrands(string? name)
         {
             var brandList = await this.WorldCarBrand.ToListAsync();

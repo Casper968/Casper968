@@ -1,0 +1,10 @@
+drop table if exists WorldCarSeries;
+
+create table if not exists WorldCarSeries(
+    ID integer primary key autoincrement,
+    ModelId integer not null,
+    Name nvarchar(100) not null,
+    Url nvarchar(100),
+    ImageUrl nvarchar(200),
+    foreign key(ModelId) references WorldCarModel(ID)
+);

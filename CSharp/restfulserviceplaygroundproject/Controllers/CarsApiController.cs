@@ -40,8 +40,8 @@ namespace restfulserviceplaygroundproject.Controllers
                 return Result.Fail(vResult.Errors.First().ToString());
             }
 
-            this._carDbContext.WorldCarBrand.Add(brand);
-            this._carDbContext.SaveChanges();
+            await this._carDbContext.WorldCarBrand.AddAsync(brand);
+            await this._carDbContext.SaveChangesAsync();
 
             return Result.Ok(this._carDbContext.WorldCarBrand.First(x => x.Name.Equals(brand.Name) && x.Url.Equals(brand.Url)));
         }
@@ -55,15 +55,15 @@ namespace restfulserviceplaygroundproject.Controllers
         [HttpPost("Models")]
         public async Task<Result> AddCarModels(CarModel model)
         {
-            CreateCarModelParamValidator validator = new CreateCarModelParamValidator(this._carDbContext);
+            CreateCarSeriesParamValidator validator = new CreateCarSeriesParamValidator(this._carDbContext);
             ValidationResult vResult = validator.Validate(model);
             if (!vResult.IsValid)
             {
                 return Result.Fail(vResult.Errors.First().ToString());
             }
 
-            this._carDbContext.WorldCarModel.Add(model);
-            this._carDbContext.SaveChanges();
+            await this._carDbContext.WorldCarModel.AddAsync(model);
+            await this._carDbContext.SaveChangesAsync();
 
             return Result.Ok(this._carDbContext.WorldCarModel.First(x => x.Name.Equals(model.Name) && x.Url.Equals(model.Url)));
         }
@@ -74,10 +74,42 @@ namespace restfulserviceplaygroundproject.Controllers
             return Result.Ok(this._carDbContext.GetCarSeries(brandName, series));
         }
 
+        [HttpPost("Series")]
+        public async Task<Result> AddCarModels(CarSeries series)
+        {
+            CreateCarSeriesParamValidator validator = new CreateCarSeriesParamValidator(this._carDbContext);
+            ValidationResult vResult = validator.Validate(series);
+            if (!vResult.IsValid)
+            {
+                return Result.Fail(vResult.Errors.First().ToString());
+            }
+
+            await this._carDbContext.WorldCarSeries.AddAsync(series);
+            await this._carDbContext.SaveChangesAsync();
+
+            return Result.Ok(this._carDbContext.WorldCarSeries.First(x => x.Name.Equals(series.Name) && x.Url.Equals(series.Url)));
+        }
+
         [HttpGet("Version")]
         public async Task<Result> GetCarVersionList(string? brandName, string? series)
         {
             return Result.Ok(this._carDbContext.GetCarVersion(brandName, series));
+        }
+        
+        [HttpPost("Version")]
+        public async Task<Result> AddCarModels(CarVersion series)
+        {
+            CreateCarVersionParamValidator validator = new CreateCarVersionParamValidator(this._carDbContext);
+            ValidationResult vResult = validator.Validate(series);
+            if (!vResult.IsValid)
+            {
+                return Result.Fail(vResult.Errors.First().ToString());
+            }
+
+            await this._carDbContext.WorldCarVersion.AddAsync(series);
+            await this._carDbContext.SaveChangesAsync();
+
+            return Result.Ok(this._carDbContext.WorldCarVersion.First(x => x.Name.Equals(series.Name) && x.Url.Equals(series.Url)));
         }
     }
 }

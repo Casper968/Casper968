@@ -55,7 +55,7 @@ namespace restfulserviceplaygroundproject.Controllers
         [HttpPost("Models")]
         public async Task<Result> AddCarModels(CarModel model)
         {
-            CreateCarSeriesParamValidator validator = new CreateCarSeriesParamValidator(this._carDbContext);
+            CreateCarModelParamValidator validator = new CreateCarModelParamValidator(this._carDbContext);
             ValidationResult vResult = validator.Validate(model);
             if (!vResult.IsValid)
             {

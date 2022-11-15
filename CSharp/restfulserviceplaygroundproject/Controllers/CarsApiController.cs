@@ -52,6 +52,22 @@ namespace restfulserviceplaygroundproject.Controllers
             return Result.Ok(this._carDbContext.GetCarModels(brandName, name));
         }
 
+        [HttpPost("Models")]
+        public async Task<Result> AddCarModels(CarModel model)
+        {
+            CreateCarModelParamValidator validator = new CreateCarModelParamValidator(this._carDbContext);
+            ValidationResult vResult = validator.Validate(model);
+            if (!vResult.IsValid)
+            {
+                return Result.Fail(vResult.Errors.First().ToString());
+            }
+
+            this._carDbContext.WorldCarModel.Add(model);
+            this._carDbContext.SaveChanges();
+
+            return Result.Ok(this._carDbContext.WorldCarModel.First(x => x.Name.Equals(model.Name) && x.Url.Equals(model.Url)));
+        }
+
         [HttpGet("Series")]
         public async Task<Result> GetCarSeries(string? brandName, string? series)
         {

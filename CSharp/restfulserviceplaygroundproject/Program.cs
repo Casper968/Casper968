@@ -1,9 +1,13 @@
 using restfulserviceplaygroundproject.DatabaseContext;
+using restfulserviceplaygroundproject.Filter;
 using restfulserviceplaygroundproject.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
+builder.Services.AddMvc(options => {
+    options.Filters.Add<ExceptionFilter>();
+});
+
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddScoped<ProductDbContext>();
 builder.Services.AddScoped<HomeDbContext>();

@@ -100,15 +100,15 @@ namespace restfulserviceplaygroundproject.DatabaseContext
                     seriesList = seriesList.Where(x => modelList.Any(y => y.ID.Equals(x.ModelId))).ToList();
                 }
                 
-                if (name != null)
+                if (series != null)
                 {
-                    seriesList = seriesList.Where(x => x.Name.IndexOf(name) > -1).ToList();
+                    seriesList = seriesList.Where(x => x.Name.IndexOf(series) > -1).ToList();
                 }
             }
 
             return seriesList;
         }
-        
+
         public async Task<List<CarVersion>> GetCarVersion(string? brandName, string? series)
         {
             var versionList = await this.WorldCarVersion.ToListAsync();
@@ -132,7 +132,7 @@ namespace restfulserviceplaygroundproject.DatabaseContext
                     }
                 }
                 
-                if (name != null)
+                if (series != null)
                 {
                     versionList = versionList.Where(x => x.Name.IndexOf(series) > -1).ToList();
                 }

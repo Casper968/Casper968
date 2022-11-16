@@ -258,7 +258,7 @@ namespace restfulserviceplaygroundproject.Controllers
         {
             int range = 0;
             Regex rg = new Regex(@"(?<range>\d+\.\d+)\ss");
-            decimal.TryParse(rg.Matches(specValue).FirstOrDefault()?.Groups["range"].Value, out range);
+            int.TryParse(rg.Matches(specValue).FirstOrDefault()?.Groups["range"].Value, out range);
 
             return range;
         }

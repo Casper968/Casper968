@@ -37,9 +37,9 @@ namespace restfulserviceplaygroundproject.Authentication
             var tokenHandler = new JwtSecurityTokenHandler();
             var validationParameters = GetValidationParameters();
 
-            IPrincipal principal = tokenHandler.ValidateToken(authToken, validationParameters, out SecurityToken validatedToken);
+            var principal = tokenHandler.ValidateToken(authToken, validationParameters, out SecurityToken validatedToken);
             
-            return true;
+            return principal.Claims.FirstOrDefault()?.Value == "Casper968" ;
         }
 
         private static TokenValidationParameters GetValidationParameters()

@@ -17,5 +17,12 @@ namespace restfulserviceplaygroundproject.Controllers
         {
             return Result.Ok(JwtGenerator.GenerateJwt(username));
         }
+
+        [HttpGet("ValidateJwt")]
+        public Result ValidateJwtString(string token)
+        {
+            bool isTokenValidated = JwtGenerator.ValidateToken(token);
+            return new Result(isTokenValidated, isTokenValidated ? "Validated" : "Validation Failed");
+        }
     }
 }

@@ -1,0 +1,12 @@
+drop table if exists Users;
+
+create table if not exists Users(
+    ID integer primary key autoincrement,
+    UserName nvarchar(200) not null,
+    Password nvarchar(16) not null
+);
+
+
+insert into Users(UserName, Password) values ('Casper968', '691005');
+
+select UserName, Password from Users;

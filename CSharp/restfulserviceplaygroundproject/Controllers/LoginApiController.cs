@@ -24,5 +24,11 @@ namespace restfulserviceplaygroundproject.Controllers
             bool isTokenValidated = JwtGenerator.ValidateToken(token);
             return new Result(isTokenValidated, isTokenValidated ? "Validated" : "Validation Failed");
         }
+
+        [HttpGet("ListUsers")]
+        public Result ListUsersFromDatabase()
+        {
+            return Result.Ok(JwtGenerator.ReadUserList());
+        }
     }
 }

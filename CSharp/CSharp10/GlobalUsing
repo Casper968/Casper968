@@ -1,0 +1,4 @@
+可以建立一個class, 內容空泛，主要用來加入所需的global using namespace
+
+另一個方式可以在project file裡面註冊
+<Using Include="System.IO" />

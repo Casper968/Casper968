@@ -1,0 +1,16 @@
+命名空間可以使用巢狀
+namespace GlobalScope
+{
+    namespace AsiaScope
+    {
+        namespace EastAsiaScope
+        {
+
+        }
+    }
+
+    namespace EuropeScope
+    {
+        
+    }
+}

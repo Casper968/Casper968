@@ -1,0 +1,12 @@
+C# 9 開始可以使用 is 運算子
+int i = 34;
+object iBoxed = i;
+int? jNullable = 42;
+if (iBoxed is int a && jNullable is int b)
+{
+    Console.WriteLine(a + b);  // output 76
+}
+
+C# 10 當中, 除了判斷出true | false 以外
+還能指定其中的子屬性值
+if (o is string { Length: 5 } s)

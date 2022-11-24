@@ -5,10 +5,10 @@ create table if not exists WorldCarVersion(
     SeriesId integer not null,
     Name nvarchar(200) not null,
     ListingYear integer,
-    MaximumPower integer,
     HorsePower integer,
+    MaximumPower integer,
     EngineSize integer,
-    EngineCapacity decimal(10,2),
+    EngineCapacity decimal(10,2),   
     Url nvarchar(200),
     foreign key(SeriesId) references WorldCarSeries(ID)
 );
